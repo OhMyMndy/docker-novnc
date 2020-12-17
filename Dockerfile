@@ -1,18 +1,18 @@
-FROM debian:stretch
+FROM ubuntu:20.04
 
 # Install git, supervisor, VNC, & X11 packages
-RUN set -ex; \
-    apt-get update; \
-    apt-get install -y \
+RUN apt-get update &&\
+    DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
       bash \
       fluxbox \
       git \
       net-tools \
       novnc \
       supervisor \
-      x11vnc \
       xterm \
-      xvfb
+      'tigervnc*' && \
+    rm -rf /tmp/** && \
+    apt-get clean -y
 
 # Setup demo environment variables
 ENV HOME=/root \
@@ -25,6 +25,8 @@ ENV HOME=/root \
     DISPLAY_HEIGHT=768 \
     RUN_XTERM=yes \
     RUN_FLUXBOX=yes
+
+
 COPY . /app
 CMD ["/app/entrypoint.sh"]
 EXPOSE 8080

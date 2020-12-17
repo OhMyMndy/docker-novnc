@@ -10,7 +10,9 @@ services:
     networks:
       - x11
   novnc:  
-    image: theasp/novnc:latest
+    image: ohmymndy/novnc:0.1
+    build:
+      .
     environment:
       # Adjust to your screen size
       - DISPLAY_WIDTH=1600
