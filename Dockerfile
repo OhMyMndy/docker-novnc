@@ -2,10 +2,14 @@ FROM ubuntu:20.04
 
 # Install git, supervisor, VNC, & X11 packages
 RUN apt-get update &&\
-    DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends \
       bash \
-      fluxbox \
-      git \
+      # fluxbox \
+      openbox \
+      # i3 \
+      # rofi \
+      tint2 \
+      # git \
       net-tools \
       novnc \
       supervisor \
@@ -26,7 +30,9 @@ ENV HOME=/root \
     RUN_XTERM=yes \
     RUN_FLUXBOX=yes
 
-
 COPY . /app
+COPY .fluxbox /root/.fluxbox/
+#COPY .vnc /root/.vnc/
+
 CMD ["/app/entrypoint.sh"]
 EXPOSE 8080

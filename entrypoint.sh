@@ -1,12 +1,12 @@
 #!/bin/bash
 set -ex
 
-RUN_FLUXBOX=${RUN_FLUXBOX:-yes}
+RUN_TINT2=${RUN_TINT2:-yes}
 RUN_XTERM=${RUN_XTERM:-yes}
 
-case $RUN_FLUXBOX in
+case $RUN_TINT2 in
   false|no|n|0)
-    rm -f /app/conf.d/fluxbox.conf
+    rm -f /app/conf.d/tint2.conf
     ;;
 esac
 
